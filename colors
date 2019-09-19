@@ -1,0 +1,20 @@
+#!/bin/sh
+# Jovan Lanik's color script 1.0
+# www.github.com/jovanlanik
+# clean and simple
+
+printf " \033[0;31m _ "
+printf " \033[0;32m _ "
+printf " \033[0;33m _ "
+printf " \033[0;34m _ "
+printf " \033[0;35m _ "
+printf " \033[0;36m _ "
+printf "\n"
+printf " \033[0;31m|_|"
+printf " \033[0;32m|_|"
+printf " \033[0;33m|_|"
+printf " \033[0;34m|_|"
+printf " \033[0;35m|_|"
+printf " \033[0;36m|_|"
+printf "\n\n"
+

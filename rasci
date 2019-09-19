@@ -1,0 +1,13 @@
+#!/bin/sh
+# Jovan Lanik's rain asci art script 1.0
+# www.github.com/jovanlanik
+# clean and simple
+
+printf "_____         _        \n"
+printf "\\    \\       |_|       \n"
+printf " \\__  \\       _      _ \n"
+printf "   /  / /\\   | | |\\ | |\n"
+printf "  /  / /_ \\  | | | \\| |\n"
+printf "  \\  \\   \\ \\ \\ | | |\\ |\n"
+printf "   \\__\\   \\_\\ \\| |_| \\|\n\n"
+
