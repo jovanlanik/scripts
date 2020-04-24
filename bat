@@ -3,7 +3,7 @@ echo
 for f in $(ls /sys/class/power_supply/)
 do
 	echo "\033[31m$f"
-	if test $f = AC;
+	if test $f = AC
 	then
 		printf "\033[34mType \033[0m"
 		cat /sys/class/power_supply/$f/type
