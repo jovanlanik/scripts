@@ -2,8 +2,8 @@
 # Jovan Lanik's VM script 1.0
 # www.github.com/jovanlanik
 # clean and simple
-
-test -z "$VM_DIR" && VM_DIR="$HOME/vms"
+test -z $VM_DIR && VM_DIR="$HOME/vms"
+test -z $VM_ARCH && VM_ARCH='x86_64'
 case $1 in
 	'list')
 		test "$#" -ne 1 && echo "vm: arguments wrong. See 'vm help'" && exit
@@ -13,9 +13,9 @@ case $1 in
 		test "$#" -ne 3 && echo "vm: arguments wrong. See 'vm help'" && exit
 		test -z "$VM_HDA" && VM_HDA=30G
 		qemu-img create -f qcow2 "$VM_DIR/$2.qcow2" $VM_HDA
-		$0 exec $2 -cdrom "$3" -boot order=d
+		$0 boot $2 -cdrom "$3" -boot order=d
 		;;
-	'exec')
+	'boot')
 		test "$#" -lt 2 && echo "vm: arguments wrong. See 'vm help'" && exit
 		test -z "$VM_MEM" && VM_MEM=2G
 		for i in $(seq 3 $#)
@@ -23,7 +23,7 @@ case $1 in
 			eval NEW=\"\$\{$i\}\"
 			ARG="$ARG $NEW"
 		done
-		qemu-system-x86_64 \
+		qemu-system-$VM_ARCH \
 			-enable-kvm \
 			-cpu host \
 			-m $VM_MEM \
@@ -37,17 +37,17 @@ case $1 in
 		echo 'commands:'
 		echo '	list'
 		echo '	make <vm> <iso>'
-		echo '	exec <vm>'
+		echo '	boot <vm>'
 		echo '	help'
 		echo 'environment:'
 		echo '	COMMAND		VARIABLE	DEFAULT	DESCRIPTION'
 		echo '	all		VM_DIR		~/vms	directory'
 		echo '	make		VM_HDA		30G	disk size'
-		echo '	make,exec	VM_MEM		2G	memory'
+		echo '	make,boot	VM_MEM		2G	memory'
 		echo 'examples:'
 		echo '	$ vm make void-xfce ~/Downloads/void-live-x86_64-20191109-xfce.iso'
-		echo '	$ vm exec ubuntu-20.04'
-		echo '	$ VM_MEM=4G vm exec ubuntu-20.04'
+		echo '	$ vm boot ubuntu-20.04'
+		echo '	$ VM_MEM=4G vm boot ubuntu-20.04'
 		echo '	$ VM_DIR=~/virtual vm list'
 		echo '	$ vm help'
 		;;
