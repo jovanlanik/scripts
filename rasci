@@ -8,4 +8,4 @@
 #  \  \   \ \ \ | | |\ |
 #   \__\   \_\ \| |_| \|
 #
-sed 1d $(realpath $0) | grep '^#' | tr '#' '\0'
+sed 1d "$(realpath $0)" | grep '^#' | tr '#' '\0'
